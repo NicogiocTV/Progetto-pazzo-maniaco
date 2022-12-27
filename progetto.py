@@ -7,8 +7,8 @@ print(f"{fg(88)}╔════════════════════�
 print(f"{fg(88)}║{bg(153)}                         {fg(196)}Benvenuto in Pokémon{attr(0)}{bg(153)}                        {attr(0)}{fg(99)}║{attr(0)}")
 print(f"{fg(99)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
 print(f"{fg(99)}║                                                                     ║{attr(0)}")
-print(f"{fg(99)}║        QESTO PROGRAMMA SIMULA UNA SCHEDA  DI UN POKEMON             ║{attr(0)}")
-print(f"{fg(99)}║                     ALCUNI COMBATTIMENTI                            ║{attr(0)}")
+print(f"{fg(99)}║        QUESTO PROGRAMMA SIMULA UNA SCHEDA  DI UN POKEMON            ║{attr(0)}")
+print(f"{fg(99)}║                   ED  ALCUNI COMBATTIMENTI                          ║{attr(0)}")
 print(f"{fg(99)}║                                                                     ║{attr(0)}")
 print(f"{fg(99)}║     Inizia col scegliere uno dei tre pokémon iniziali per poter     ║{attr(0)}")
 print(f"{fg(99)}║                      iniziare la tua avventura!                     ║{attr(0)}")
@@ -73,7 +73,7 @@ if op == "si" or op == "SI" or "Si" :
     sdif=sdif+random.randint(1,6)    #
 
     pv=10+random.randint(1,6)        #
-    pv=pv+random.randint(1,6)    #     speed   /   velocità
+    pv=pv+random.randint(1,6)    #     Life points   /   Punti vita
     pv=pv+random.randint(1,6)    #
 
 
