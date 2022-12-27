@@ -9,6 +9,8 @@ print(f"{fg(99)}║                                                             
 print(f"{fg(99)}║        QESTO PROGRAMMA SIMULA UNA SCHEDA  DI UN POKEMON             ║{attr(0)}")
 print(f"{fg(99)}║                     ALCUNI COMBATTIMENTI                            ║{attr(0)}")
 print(f"{fg(99)}║                                                                     ║{attr(0)}")
+print(f"{fg(99)}║     Inizia col scegliere uno dei tre pokémon iniziali per poter     ║{attr(0)}")
+print(f"{fg(99)}║                      iniziare la tua avventura!                     ║{attr(0)}")
 print(f"{fg(99)}╠═════════╗                                                 ╔═════════╣{attr(0)}")
 print(f"{fg(88)}║ ◓  ◓  ◓ {fg(99)}╠═════════╗                             ╔═════════╣{attr(0)}{fg(88)} ◓  ◓  ◓ ║{attr(0)}")
 print(f"{fg(88)}╚═════════╩═════════{fg(99)}╩═════════════════════════════╩{attr(0)}{fg(88)}═════════╩═════════╝{attr(0)}")
@@ -25,12 +27,34 @@ print(f"                         {fg(98)} la 1 / la 2/ la 3 {attr(0)}")
 pokeball = int(input(""))
 if pokeball == 1:
     pokemon="Charmander"
-    print(f"il pockemon che hai scelto è {pokemon}")
+    output1 = climage.convert('Charmander.png')
+    
+    print(output1)
+    print(f"{fg(196)}╚══════════════════════════════════{pokemon}══════════════════════════════════╝{attr(0)}")
 elif pokeball == 2:
     pokemon="Squirtle"
-    print(f"il pockemon che hai scelto è {pokemon}")
+    output1 = climage.convert('Squirtle.png')
+
+    print(output1)
+    print(f"{fg(21)}╚══════════════════════════════════{pokemon}══════════════════════════════════╝{attr(0)}")
 elif pokeball == 3:
     pokemon="Bulbasaur"
-    print(f"il pockemon che hai scelto è {pokemon}")
+    output1 = climage.convert('Bulbasaur.png')
+
+    print(output1)
+    print(f"{fg(28)}╚══════════════════════════════════{pokemon}══════════════════════════════════╝{attr(0)}")
 else :
     print("tua mamma morta")
+
+
+nome = input("Che nome vuoi dare al tuo pokemon   ")
+
+print(f"{fg(88)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
+print(f"{fg(88)}║{bg(153)}                         {fg(196)}Statistiche del pokemon{attr(0)}{bg(153)}                        {attr(0)}{fg(99)}║{attr(0)}")
+print(f"{fg(99)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
+print(f"{fg(99)}║                                                                     ║{attr(0)}")
+print(f"{fg(99)}║                     ║{attr(0)}")
+print(f"{fg(99)}║                                                 ║{attr(0)}")
+print(f"{fg(99)}║                                                                     ║{attr(0)}")
+print(f"{fg(99)}║        ║{attr(0)}")
+print(f"{fg(99)}║                                           ║{attr(0)}")
