@@ -48,8 +48,8 @@ else :
     print("tua mamma morta")
 
 
-op = ("voi dargli un nome")
-if op == "si" :
+op = input("voi dargli un nome")
+if op == "si" or op == "SI" or "Si" :
     nome = input("Che nome vuoi dare al tuo pokemon   ")
     #creazione stats del pokemon
     spe=random.randint(1,6)        #
@@ -89,7 +89,7 @@ if op == "si" :
     print(f"{fg(100)}                    difesa speciale {sdif}                               {attr(0)}")
     print(f"{fg(100)}                    velocità {spe}                                      {attr(0)}")
     print(f"{fg(100)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
-elif op == "no" :
+elif op == "no" or op=="NO" or op=="No" :
     #creazione stats del pokemon
     spe=random.randint(1,6)        #
     spe=spe+random.randint(1,6)    #     speed   /   velocità
