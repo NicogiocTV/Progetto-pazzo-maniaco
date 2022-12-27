@@ -48,7 +48,10 @@ else :
 
 
 nome = input("Che nome vuoi dare al tuo pokemon   ")
+#creazione stats del pokemon
 
+
+#stampa scheda del pokemon
 print(f"{fg(88)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
 print(f"{fg(88)}║{bg(153)}                         {fg(196)}Statistiche del pokemon{attr(0)}{bg(153)}                        {attr(0)}{fg(99)}║{attr(0)}")
 print(f"{fg(99)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
