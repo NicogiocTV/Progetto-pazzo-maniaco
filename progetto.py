@@ -48,42 +48,83 @@ else :
     print("tua mamma morta")
 
 
-nome = input("Che nome vuoi dare al tuo pokemon   ")
-#creazione stats del pokemon
-spe=random.randint(1,6)        #
-spe=spe+random.randint(1,6)    #     speed   /   velocità
-spe=spe+random.randint(1,6)    #
+op = ("voi dargli un nome")
+if op == "si" :
+    nome = input("Che nome vuoi dare al tuo pokemon   ")
+    #creazione stats del pokemon
+    spe=random.randint(1,6)        #
+    spe=spe+random.randint(1,6)    #     speed   /   velocità
+    spe=spe+random.randint(1,6)    #
 
-att=random.randint(1,6)        #
-att=att+random.randint(1,6)    #     attacco
-att=att+random.randint(1,6)    #
+    att=random.randint(1,6)        #
+    att=att+random.randint(1,6)    #     attacco
+    att=att+random.randint(1,6)    #
 
-dif=random.randint(1,6)        #
-dif=dif+random.randint(1,6)    #     defense  /   difesa   (def non va bene come variabile)
-dif=dif+random.randint(1,6)    #
+    dif=random.randint(1,6)        #
+    dif=dif+random.randint(1,6)    #     defense  /   difesa   (def non va bene come variabile)
+    dif=dif+random.randint(1,6)    #
 
-satt=random.randint(1,6)        #
-satt=satt+random.randint(1,6)    #     special attack  /   attacco speciale
-satt=satt+random.randint(1,6)    #
+    satt=random.randint(1,6)        #
+    satt=satt+random.randint(1,6)    #     special attack  /   attacco speciale
+    satt=satt+random.randint(1,6)    #
 
-sdif=random.randint(1,6)        #
-sdif=sdif+random.randint(1,6)    #     special defense    /   difesa speciale
-sdif=sdif+random.randint(1,6)    #
+    sdif=random.randint(1,6)        #
+    sdif=sdif+random.randint(1,6)    #     special defense    /   difesa speciale
+    sdif=sdif+random.randint(1,6)    #
 
-pv=10+random.randint(1,6)        #
-pv=pv+random.randint(1,6)    #     speed   /   velocità
-pv=pv+random.randint(1,6)    #
+    pv=10+random.randint(1,6)        #
+    pv=pv+random.randint(1,6)    #     speed   /   velocità
+    pv=pv+random.randint(1,6)    #
 
 
 
-#stampa scheda del pokemon
-print(f"{fg(100)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
-print(f"{fg(100)}                     Statistiche di   {nome}{attr(0)}                       {attr(0)}{fg(99)}{attr(0)}")
-print(f"{fg(100)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
-print(f"{fg(100)}                    punti vita {pv}                                    {attr(0)}")
-print(f"{fg(100)}                    attacco {att}                                       {attr(0)}")
-print(f"{fg(100)}                    difesa {dif}                                        {attr(0)}")
-print(f"{fg(100)}                    attacco speciale {satt}                              {attr(0)}")
-print(f"{fg(100)}                    difesa speciale {sdif}                               {attr(0)}")
-print(f"{fg(100)}                    velocità {spe}                                      {attr(0)}")
-print(f"{fg(100)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+    #stampa scheda del pokemon
+    print(f"{fg(100)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
+    print(f"{fg(100)}                     Statistiche di   {nome}{attr(0)}                       {attr(0)}{fg(99)}{attr(0)}")
+    print(f"{fg(100)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
+    print(f"{fg(100)}                    punti vita {pv}                                    {attr(0)}")
+    print(f"{fg(100)}                    attacco {att}                                       {attr(0)}")
+    print(f"{fg(100)}                    difesa {dif}                                        {attr(0)}")
+    print(f"{fg(100)}                    attacco speciale {satt}                              {attr(0)}")
+    print(f"{fg(100)}                    difesa speciale {sdif}                               {attr(0)}")
+    print(f"{fg(100)}                    velocità {spe}                                      {attr(0)}")
+    print(f"{fg(100)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+elif op == "no" :
+    #creazione stats del pokemon
+    spe=random.randint(1,6)        #
+    spe=spe+random.randint(1,6)    #     speed   /   velocità
+    spe=spe+random.randint(1,6)    #
+
+    att=random.randint(1,6)        #
+    att=att+random.randint(1,6)    #     attacco
+    att=att+random.randint(1,6)    #
+
+    dif=random.randint(1,6)        #
+    dif=dif+random.randint(1,6)    #     defense  /   difesa   (def non va bene come variabile)
+    dif=dif+random.randint(1,6)    #
+
+    satt=random.randint(1,6)        #
+    satt=satt+random.randint(1,6)    #     special attack  /   attacco speciale
+    satt=satt+random.randint(1,6)    #
+
+    sdif=random.randint(1,6)        #
+    sdif=sdif+random.randint(1,6)    #     special defense    /   difesa speciale
+    sdif=sdif+random.randint(1,6)    #
+
+    pv=10+random.randint(1,6)        #
+    pv=pv+random.randint(1,6)    #     speed   /   velocità
+    pv=pv+random.randint(1,6)    #
+
+
+
+    #stampa scheda del pokemon
+    print(f"{fg(100)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
+    print(f"{fg(100)}                     Statistiche di   {pokemon}{attr(0)}                       {attr(0)}{fg(99)}{attr(0)}")
+    print(f"{fg(100)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
+    print(f"{fg(100)}                    punti vita {pv}                                    {attr(0)}")
+    print(f"{fg(100)}                    attacco {att}                                       {attr(0)}")
+    print(f"{fg(100)}                    difesa {dif}                                        {attr(0)}")
+    print(f"{fg(100)}                    attacco speciale {satt}                              {attr(0)}")
+    print(f"{fg(100)}                    difesa speciale {sdif}                               {attr(0)}")
+    print(f"{fg(100)}                    velocità {spe}                                      {attr(0)}")
+    print(f"{fg(100)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
