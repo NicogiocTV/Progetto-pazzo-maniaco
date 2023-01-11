@@ -8,3 +8,7 @@ Obbiettivi:
 -bisogna finire il sistema di combattimento
 -creare un sistema di guadagno xp alla fine di ogni fight
 -tradurre il programma in inglese
+
+
+
+scrivi un codice in assembly base con emu 8086 con convenzioni windows che che trasformi tutti i caratteri maiuscoli  di questa stringa AsDfGhJjjkq
