@@ -1,7 +1,7 @@
 Cose che può fare il programma:
 -creazione personaggio con supporto per le immagini
 -scelta dello starter fra i tre di prima generazione
--incontro casuale con uno fra 17 pokémon diversi
+-incontro casuale con uno fra 18 pokémon diversi
 -combattimento (in elaborazione)
 
 Obbiettivi:
