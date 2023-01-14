@@ -8,4 +8,3 @@ Cose che può fare il programma:
 Obbiettivi:
 -tradurre il programma in inglese
 -cercare di implementare un reparto sonoro
-
