@@ -12,8 +12,22 @@ import time
 from tqdm import tqdm                 # utilizzo la libreria "tqdm" fatta appositamente per la creazione di barre di caricamento
 import webbrowser
 import pyfiglet                       # utilizzo la libreria "pyfiglet" per poter trasformare una stringa in textart
+import prova_animazione as pa
+import os
 #                                     #https://github.com/NicogiocTV/Progetto-pazzo-maniaco -----> link GitHub per scaricare tutti i file necessari per l'esecuzione.
 
+def save(player_name, character, pokemon, pokemon_exp, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe):       # funzione per il salvataggio dei dati
+    print("Salvataggio in corso...")
+    time.sleep(2)
+    save_list = [player_name, character, pokemon, str(pokemon_exp), str(pokemon_lvl), pokemon_type, str(lp), str(att), str(dif), str(satt), str(sdif), str(spe)]
+    f = open("salvataggi.txt", "w")     # il programma crea la cartella "salvataggi.txt" o la apre e la sovrascrive se esite già
+    for i in range(len(save_list)):
+        f.write(save_list[i] + "\n")    # salva una variabile per riga nel file di testo
+    f.close()                           # chiude il file
+    print("Salvataggio riuscito.")
+
+#skull = "skull-spin.gif"
+#pa.gif(skull)
 
 enemy_pokemon_list = [ "Caterpie" , "Weedle" , "Pidgey" , "Rattata" , "Spearow" , "Ekans" , "Pikachu" , "Sandshrew" , "Nidoran♀" , "Nidoran♂" , "Mewtwo" , "Onix" , "Ponyta" , "Abra" , "Zubat" , "Vulpix" , "Jigglypuff" , "Oddish" , ]  
 lp1 = 1
@@ -29,55 +43,58 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
 
         print("")
         print("")
-        for i in range(1):
-            time.sleep(2)
+        def loading_bar():
+            for i in range(1):
+                time.sleep(2)
 
-        for i in tqdm(range(100)):        # cicli per la creazione della barra di caricamento
-            time.sleep(0.1)
+            for i in tqdm(range(10)):        # cicli per la creazione della barra di caricamento
+                time.sleep(0.1)
+        loading_bar()
 
         # Menù iniziale------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        pygame.init()                             # inizializzo pygame
-        mixer.music.load("Opening.wav")           # carico il file audio
-        mixer.music.play(-1)                      # inizia la musica (fra parentesi il numero di volte da riprodurre il file, -1 è in loop)
-        mixer.music.set_volume(0.4)               # regolazione del volume
-        print("")
-        print("")
+        def menù():
+            pygame.init()                             # inizializzo pygame
+            mixer.music.load("Opening.wav")           # carico il file audio
+            mixer.music.play(-1)                      # inizia la musica (fra parentesi il numero di volte da riprodurre il file, -1 è in loop)
+            mixer.music.set_volume(0.4)               # regolazione del volume
+            print("")
+            print("")
 
-        print(f"{fg(27)}{bg(220)}                                  ,'\                              {attr(0)}")
-        print(f"{fg(27)}{bg(220)}    _.----.        ____         ,'  _\   ___    ___     ____       {attr(0)}")
-        print(f"{fg(27)}{bg(220)}_,-'       `.     |    |  /`.   \,-'    |   \  /   |   |    \  |`. {attr(0)}")
-        print(f"{fg(27)}{bg(220)}\      __    \    '-.  | /   `.  ___    |    \/    |   '-.   \ |  |{attr(0)}")
-        print(f"{fg(27)}{bg(220)} \.    \ \   |  __  |  |/    ,','_  `.  |          | __  |    \|  |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}   \    \/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}    \     ,-'/  /   \    ,'   | \/ / ,`.|         /  /   \  |     |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}     \    \ |   \_/  |   `-.  \    `'  /|  |    ||   \_/  | |\    |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}      \    \ \      /       `-.`.___,-' |  |\  /| \      /  | |   |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}       \    \ `.__,'|  |`-._    `|      |__| \/ |  `.__,'|  | |   |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}        \_.-'       |__|    `-._ |              '-.|     '-.| |   |{attr(0)}")
-        print(f"{fg(27)}{bg(220)}                                `'                            '-._|{attr(0)}")
-        print("")
-        print("")
-        print(f"{fg(88)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
-        print(f"{fg(88)}║{bg(153)}                         {fg(196)}Benvenuto in Pokémon{attr(0)}{bg(153)}                        {attr(0)}{fg(99)}║{attr(0)}")
-        print(f"{fg(99)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
-        print(f"{fg(99)}║                                                                     ║{attr(0)}")
-        print(f"{fg(99)}║          Questo programma simula la scheda di un pokémon            ║{attr(0)}")
-        print(f"{fg(99)}║                     e alcuni combattimenti.                         ║{attr(0)}")
-        print(f"{fg(99)}║                                                                     ║{attr(0)}")
-        print(f"{fg(99)}║     Inizia col scegliere uno dei tre pokémon iniziali per poter     ║{attr(0)}")
-        print(f"{fg(99)}║                      iniziare la tua avventura!                     ║{attr(0)}")
-        print(f"{fg(99)}║                                                                     ║{attr(0)}")
-        print(f"{fg(99)}╠═════════╗            Premi ENTER per continuare           ╔═════════╣{attr(0)}")
-        print(f"{fg(88)}║ ◓  ◓  ◓ {fg(99)}╠═════════╗                             ╔═════════╣{attr(0)}{fg(88)} ◓  ◓  ◓ ║{attr(0)}")
-        print(f"{fg(88)}╚═════════╩═════════{fg(99)}╩═════════════════════════════╩{attr(0)}{fg(88)}═════════╩═════════╝{attr(0)}")
+            print(f"{fg(27)}{bg(220)}                                  ,'\                              {attr(0)}")
+            print(f"{fg(27)}{bg(220)}    _.----.        ____         ,'  _\   ___    ___     ____       {attr(0)}")
+            print(f"{fg(27)}{bg(220)}_,-'       `.     |    |  /`.   \,-'    |   \  /   |   |    \  |`. {attr(0)}")
+            print(f"{fg(27)}{bg(220)}\      __    \    '-.  | /   `.  ___    |    \/    |   '-.   \ |  |{attr(0)}")
+            print(f"{fg(27)}{bg(220)} \.    \ \   |  __  |  |/    ,','_  `.  |          | __  |    \|  |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}   \    \/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}    \     ,-'/  /   \    ,'   | \/ / ,`.|         /  /   \  |     |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}     \    \ |   \_/  |   `-.  \    `'  /|  |    ||   \_/  | |\    |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}      \    \ \      /       `-.`.___,-' |  |\  /| \      /  | |   |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}       \    \ `.__,'|  |`-._    `|      |__| \/ |  `.__,'|  | |   |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}        \_.-'       |__|    `-._ |              '-.|     '-.| |   |{attr(0)}")
+            print(f"{fg(27)}{bg(220)}                                `'                            '-._|{attr(0)}")
+            print("")
+            print("")
+            print(f"{fg(88)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
+            print(f"{fg(88)}║{bg(153)}                         {fg(196)}Benvenuto in Pokémon{attr(0)}{bg(153)}                        {attr(0)}{fg(99)}║{attr(0)}")
+            print(f"{fg(99)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
+            print(f"{fg(99)}║                                                                     ║{attr(0)}")
+            print(f"{fg(99)}║          Questo programma simula la scheda di un pokémon            ║{attr(0)}")
+            print(f"{fg(99)}║                     e alcuni combattimenti.                         ║{attr(0)}")
+            print(f"{fg(99)}║                                                                     ║{attr(0)}")
+            print(f"{fg(99)}║     Inizia col scegliere uno dei tre pokémon iniziali per poter     ║{attr(0)}")
+            print(f"{fg(99)}║                      iniziare la tua avventura!                     ║{attr(0)}")
+            print(f"{fg(99)}║                                                                     ║{attr(0)}")
+            print(f"{fg(99)}╠═════════╗            Premi ENTER per continuare           ╔═════════╣{attr(0)}")
+            print(f"{fg(88)}║ ◓  ◓  ◓ {fg(99)}╠═════════╗                             ╔═════════╣{attr(0)}{fg(88)} ◓  ◓  ◓ ║{attr(0)}")
+            print(f"{fg(88)}╚═════════╩═════════{fg(99)}╩═════════════════════════════╩{attr(0)}{fg(88)}═════════╩═════════╝{attr(0)}")
 
-        print("Ogni volta che troverai una cosa del genere '→ ' premi invio")
-        next=input('→ ')           # questa variabile serve per "fermare" il programma, il programma continua una volta che l'utente dà la conferma semplicemente premendo invio (come nei veri giochi Pokémon).
-        playsound("Archeo_Groudon.mp3")
+            print("Ogni volta che troverai una cosa del genere '→ ' premi invio")
+            next=input('→ ')           # questa variabile serve per "fermare" il programma, il programma continua una volta che l'utente dà la conferma semplicemente premendo invio (come nei veri giochi Pokémon).
+            playsound("Archeo_Groudon.mp3")
 
-        mixer.music.stop()         # fermo la musica
-        time.sleep(1)              # il comando serve per fermare il programma e poi farlo ripartire dopo il numero di secondi specificati fra parentesi
-
+            mixer.music.stop()         # fermo la musica
+            time.sleep(1)              # il comando serve per fermare il programma e poi farlo ripartire dopo il numero di secondi specificati fra parentesi
+        menù()
         # Creazione personaggio-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         calem = climage.convert("CalemXY.png",  width=60,  is_unicode=True, is_truecolor=True, palette="default", is_8color=False, is_16color=False, is_256color=False)          # converte l'immagine in formato ANSI e gli assegna una variabile, 
         serena = climage.convert("SerenaXY.png",   width=60,  is_unicode=True, is_truecolor=True, palette="default", is_8color=False, is_16color=False, is_256color=False)                                     # questa è la conversione delle immagini dei due personaggi giocabili
@@ -175,7 +192,7 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
 
         att = random.randint(1,6)+random.randint(1,6)+random.randint(1,6)        # attack/attacco
 
-        dif = random.randint(1,6)+random.randint(1,6)+random.randint(1,6)        # defense/difesa   (def è un comando di python quindi non va bene come variabile)
+        dif = random.randint(1,6)+random.randint(1,6)+random.randint(1,6)        # defense/difesa
 
         satt = random.randint(1,6)+random.randint(1,6)+random.randint(1,6)       # special attack/attacco speciale
 
@@ -196,53 +213,43 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
             pokemon_lvl = 100
 
 
-
         # Nome del pokémon----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        
+        def stats(s_pokemon, s_pokemon_lvl, s_pokemon_type, s_lp, s_att, s_dif, s_satt, s_sdif, s_spe):
+            print(f"\n{fg(147)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
+            print(f"{fg(147)}        Statistiche di {s_pokemon}     Livello: {s_pokemon_lvl}     Tipo: {s_pokemon_type}{attr(0)}")
+            print(f"{fg(147)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
+            print(f"{fg(147)}                           Punti Vita ❤️  {s_lp}                                    {attr(0)}")
+            print(f"{fg(147)}                           Attacco ⚔️  {s_att}                                       {attr(0)}")
+            print(f"{fg(147)}                           Difesa 🛡 {s_dif}                                        {attr(0)}")
+            print(f"{fg(147)}                           Attacco Speciale ✨ {s_satt}                              {attr(0)}")
+            print(f"{fg(147)}                           Difesa Speciale 🔮 {s_sdif}                               {attr(0)}")
+            print(f"{fg(147)}                           Velocità ⚡ {s_spe}                                      {attr(0)}")
+            print(f"{fg(147)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+
         opz = True
         while opz!="si" or opz!="SI" or opz!="Si" or opz!="no" or opz!="NO" or opz!="No":
             opz = input("\nVuoi dargli un nome?: ")
             if opz=="si" or opz=="SI" or opz=="Si" or opz=="S" or opz=="s":
                 pokemon = input("\nChe nome vuoi dare al tuo pokémon?: ")
-
-                # stampa scheda del pokémon
-                print(f"\n{fg(147)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
-                print(f"{fg(147)}        Statistiche di {pokemon}     Livello: {pokemon_lvl}     Tipo: {pokemon_type}{attr(0)}")
-                print(f"{fg(147)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
-                print(f"{fg(147)}                           Punti Vita {lp}                                    {attr(0)}")
-                print(f"{fg(147)}                           Attacco {att}                                       {attr(0)}")
-                print(f"{fg(147)}                           Difesa {dif}                                        {attr(0)}")
-                print(f"{fg(147)}                           Attacco Speciale {satt}                              {attr(0)}")
-                print(f"{fg(147)}                           Difesa Speciale {sdif}                               {attr(0)}")
-                print(f"{fg(147)}                           Velocità {spe}                                      {attr(0)}")
-                print(f"{fg(147)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+                stats(pokemon, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe)     # stampa scheda del pokémon
                 break
 
             elif opz=="no" or opz=="NO" or opz=="No" or opz=="N" or opz=="n":
-
-                # stampa scheda del pokémon
-                print(f"\n{fg(147)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
-                print(f"{fg(147)}     Statistiche di {pokemon}     Livello: {pokemon_lvl}     Tipo: {pokemon_type}{attr(0)}")
-                print(f"{fg(147)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
-                print(f"{fg(147)}                           Punti Vita {lp}                                    {attr(0)}")
-                print(f"{fg(147)}                           Attacco {att}                                       {attr(0)}")
-                print(f"{fg(147)}                           Difesa {dif}                                        {attr(0)}")
-                print(f"{fg(147)}                           Attacco Speciale {satt}                              {attr(0)}")
-                print(f"{fg(147)}                           Difesa Speciale {sdif}                               {attr(0)}")
-                print(f"{fg(147)}                           Velocità {spe}                                      {attr(0)}")
-                print(f"{fg(147)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+                stats(pokemon, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe)     # stampa scheda del pokémon
                 break
             else:
                 print("\ninput invalido.\n")
         next=input('→ ')    
 
-        info_type = input("Vuoi visualizzare i tipi su cui il tuo pokémon e superefficacie o a quali è debole?:")
+        info_type = input("Vuoi visualizzare i tipi su cui il tuo pokémon e superefficacie o a quali è debole?: ")
         if info_type == "SI" or info_type == "Si" or info_type == "si" or info_type == "S" or info_type == "s":
             pokemon_type_table="https://pwtng.altervista.org/wp-content/uploads/2017/08/tipi.png"
             webbrowser.open(pokemon_type_table)
 
 
         next=input('→ ')
-        mixer.music.stop()
+        mixer.music.stop()      # ferma la musica
         time.sleep(2)
 
         # Inizio scontro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -397,75 +404,72 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
                             case _:
                                 print("Errore nella lista")
 
-                mixer.music.load("battle_ost.wav")
-                mixer.music.play(-1)
-                mixer.music.set_volume(0.4)
+                mixer.music.load("battle_ost.wav")  # carica la musica del combattimento
+                mixer.music.play(-1)                # parte la musica
+                mixer.music.set_volume(0.4)         # settaggio del volume
                 time.sleep(2)
-                print(f"{fg(196)}╔═════════════════════════════════════════════════════════════════════╗{attr(0)}")
-                print(f"{fg(196)}      Statistiche di {enemy_pokemon}        Livello: {enemy_pokemon_lvl}        Tipo: {enemy_pokemon_type}             {attr(0)}")
-                print(f"{fg(196)}╠═════════════════════════════════════════════════════════════════════╣{attr(0)}")
-                print(f"{fg(196)}                           Punti Vita {elp}                                   {attr(0)}")
-                print(f"{fg(196)}                           Attacco {eatt}                                      {attr(0)}")
-                print(f"{fg(196)}                           Difesa {edif}                                       {attr(0)}")
-                print(f"{fg(196)}                           Attacco Speciale {esatt}                             {attr(0)}")
-                print(f"{fg(196)}                           Difesa Speciale {esdif}                              {attr(0)}")
-                print(f"{fg(196)}                           Velocità {espe}                                     {attr(0)}")
-                print(f"{fg(196)}╚═════════════════════════════════════════════════════════════════════╝{attr(0)}")
+                
+                stats(enemy_pokemon, enemy_pokemon_lvl, enemy_pokemon_type, elp, eatt, edif, esatt, esdif, espe)
 
                 next=input('→ ')
 
                 # Efficacia dei tipi-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                def efficacy_types(pokemon_type, enemy_pokemon_type):
+                    global modifier
+                    modifier = 1
+                    global enemy_modifier
+                    enemy_modifier = 1
 
-                modifier=1
-                enemy_modifier=1
-                if pokemon_type=="Fuoco" and enemy_pokemon_type=="Erba" or enemy_pokemon_type=="Coleottero":
-                    modifier=2
-                    enemy_modifier=0.5
-                elif pokemon_type=="Fuoco" and enemy_pokemon_type=="Fuoco":
-                    modifier=0.5
-                    enemy_modifier=0.5
-                elif pokemon_type=="Acqua" and enemy_pokemon_type=="Fuoco" or enemy_pokemon_type=="Terra" or enemy_pokemon_type=="Roccia":
-                    modifier=2
-                    enemy_modifier=0.5
-                elif pokemon_type=="Erba" and enemy_pokemon_type=="Acqua" or enemy_pokemon_type=="Terra" or enemy_pokemon_type=="Roccia":
-                    modifier=2
-                    enemy_modifier=0.5
-                elif pokemon_type=="Erba" and enemy_pokemon_type=="Elettro":
-                    enemy_modifier=0.5
-                #--------------------------------------------------------------|             # https://wiki.pokemoncentral.it/Tipo -----> Per fare i Superefficace/Poco Efficace dei tipi abbiamo consultato la wiki ufficiale del gioco
-                if enemy_pokemon_type=="Veleno" and pokemon_type=="Erba":
-                    modifier=0.5
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Coleottero" and pokemon_type=="Erba":
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Terra" and pokemon_type=="Fuoco":
-                    modifier=0.5
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Roccia" and pokemon_type=="Fuoco":
-                    modifier=0.5
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Elettro" and pokemon_type=="Acqua":
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Fuoco" and pokemon_type=="Erba":
-                    modifier=0.5
-                    enemy_modifier=2
-                elif enemy_pokemon_type=="Erba" and pokemon_type=="Acqua":
-                    modifier=0.5
-                    enemy_modifier=2
-
+                    if pokemon_type=="Fuoco" and enemy_pokemon_type=="Erba" or enemy_pokemon_type=="Coleottero":
+                        modifier=2
+                        enemy_modifier=0.5
+                    elif pokemon_type=="Fuoco" and enemy_pokemon_type=="Fuoco":
+                        modifier=0.5
+                        enemy_modifier=0.5
+                    elif pokemon_type=="Acqua" and enemy_pokemon_type=="Fuoco" or enemy_pokemon_type=="Terra" or enemy_pokemon_type=="Roccia":
+                        modifier=2
+                        enemy_modifier=0.5
+                    elif pokemon_type=="Erba" and enemy_pokemon_type=="Acqua" or enemy_pokemon_type=="Terra" or enemy_pokemon_type=="Roccia":
+                        modifier=2
+                        enemy_modifier=0.5
+                    elif pokemon_type=="Erba" and enemy_pokemon_type=="Elettro":
+                        enemy_modifier=0.5
+                    #--------------------------------------------------------------|             # https://wiki.pokemoncentral.it/Tipo -----> Per fare i Superefficace/Poco Efficace dei tipi abbiamo consultato la wiki ufficiale del gioco
+                    if enemy_pokemon_type=="Veleno" and pokemon_type=="Erba":
+                        modifier=0.5
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Coleottero" and pokemon_type=="Erba":
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Terra" and pokemon_type=="Fuoco":
+                        modifier=0.5
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Roccia" and pokemon_type=="Fuoco":
+                        modifier=0.5
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Elettro" and pokemon_type=="Acqua":
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Fuoco" and pokemon_type=="Erba":
+                        modifier=0.5
+                        enemy_modifier=2
+                    elif enemy_pokemon_type=="Erba" and pokemon_type=="Acqua":
+                        modifier=0.5
+                        enemy_modifier=2
+                efficacy_types(pokemon_type, enemy_pokemon_type)
                 # Attacco------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 lp1 = lp
                 while not(lp1<=0 or elp<=0):
+                    def combat_menu(lp1, elp):
+                        print(f"{fg(222)}\n╔═{lp1:.0f} I tuoi HP                                       HP avversario {elp:.0f}═╗{attr(0)}")
+                        print(f"{fg(222)}╠══════════════════════════════════╦══════════════════════════════════╣{attr(0)}")
+                        print(f"{fg(222)}║{attr(0)}{bg(53)}              Attacco             {attr(0)}{fg(222)}║{attr(0)}{bg(53)}         Attacco Speciale         {attr(0)}{fg(222)}║{attr(0)}")
+                        print(f"{fg(222)}╚════════════════╗1╔═══════════════╩═══════════════╗2╔════════════════╝{attr(0)}")
+                        print(f"{fg(222)}                   ║{bg(53)}              Fuga             {attr(0)}{fg(222)}║{attr(0)}")
+                        print(f"{fg(222)}                   ╚══════════════╗3╔══════════════╝{attr(0)}")
+                        global option
+                        option=input("\n════════════╣Scegliere l'attacco: ")
+                    combat_menu(lp1, elp)
 
-                    print(f"{fg(222)}\n╔═{lp1:.0f} I tuoi HP                                       HP avversario {elp:.0f}═╗{attr(0)}")
-                    print(f"{fg(222)}╠══════════════════════════════════╦══════════════════════════════════╣{attr(0)}")
-                    print(f"{fg(222)}║{attr(0)}{bg(53)}              Attacco             {attr(0)}{fg(222)}║{attr(0)}{bg(53)}         Attacco Speciale         {attr(0)}{fg(222)}║{attr(0)}")
-                    print(f"{fg(222)}╚════════════════╗1╔═══════════════╩═══════════════╗2╔════════════════╝{attr(0)}")
-                    print(f"{fg(222)}                   ║{bg(53)}              Fuga             {attr(0)}{fg(222)}║{attr(0)}")
-                    print(f"{fg(222)}                   ╚══════════════╗3╔══════════════╝{attr(0)}")
-                    option=input("\n════════════╣Scegliere l'attacco: ")
                     power=30            # potenza della mossa, che in questo caso mettiamo 30 di base sia per attacchi fisici che speciali
-
 
                     if option=="fuga" or option=="3":
                             print(f"Scampato pericolo!")
@@ -661,22 +665,25 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
                             print(f"Hai vinto la battaglia. Esperienza ottenuta: {battle_exp}")
                             pokemon_exp=pokemon_exp+battle_exp
                             break
-                if pokemon_exp >= pokemon_exp + 100:
-                    pokemon_lvl=pokemon_lvl+1
 
-                    print(f"{pokemon}  è salito al livello {pokemon_lvl}!")
+                def lvl_up(pokemon_exp, pokemon_lvl, pokemon, lp, att, dif, satt, sdif, spe):
+                    if pokemon_exp >= pokemon_exp + 100:                        # funzione in caso il pokémon salga di livello
+                        pokemon_lvl=pokemon_lvl+1
 
-                    lp=lp+(lp/100*7)
+                        print(f"{pokemon}  è salito al livello {pokemon_lvl}!")
 
-                    att=att+(att/100*7)
+                        lp=lp+(lp/100*7)
 
-                    dif=dif+(dif/100*7)
+                        att=att+(att/100*7)
 
-                    satt=satt+(satt/100*7)
+                        dif=dif+(dif/100*7)
 
-                    sdif=sdif+(sdif/100*7)
+                        satt=satt+(satt/100*7)
 
-                    spe=spe+(spe/100*7)
+                        sdif=sdif+(sdif/100*7)
+
+                        spe=spe+(spe/100*7)
+                lvl_up(pokemon_exp, pokemon_lvl, pokemon, lp, att, dif, satt, sdif, spe)
 
                 mixer.music.stop()    
             elif choice_combat == "NO" or choice_combat == "No" or choice_combat == "no" or choice_combat == "n" or choice_combat == "N" :
@@ -694,7 +701,10 @@ while language!="ITA" or language!="Ita" or language!="ita" or language!="italia
                     playsound("Cura.mp3")
                     print("Il tuo pokémon è in piene forze!")
 
+
+            save(player_name, character, pokemon, pokemon_exp, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe)
         break
+        
         #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     elif language == "ENG" or language == "Eng" or language == "eng" or language == "english" or language == "e" or language == "ENGLISH" or language == "English" or language == "E":
