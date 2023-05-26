@@ -1,7 +1,0 @@
-moduli da installare per eseguire il programma:
-
--pygame  ("pip install pygame --pre" in caso il modulo dovesse dare problemi)
--playsound  ("pip install playsound==1.2.2" per usare una versione precedente dato che l'ultima potrebbe causare problemi con certi file)
--colored
--climage
--tqdm
