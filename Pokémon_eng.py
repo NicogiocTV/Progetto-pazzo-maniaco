@@ -141,7 +141,7 @@ def game_e():
     time.sleep(1)              # il comando serve per fermare il programma e poi farlo ripartire dopo il numero di secondi specificati fra parentesi
 
     saves = input("Want to load a game? ")
-    print("\033c", end="")
+    print("\033c", end="")     # print speciale in grado di "ripulire" il terminale
     if saves == "yes" or saves=="y" or saves=="YES" or saves=="Y" or saves=="Yes":
         z = open("salvataggi.txt", "r")
         stick = z.readlines()
