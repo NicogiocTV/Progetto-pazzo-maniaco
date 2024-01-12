@@ -151,6 +151,7 @@ def game_i():
     time.sleep(1)              # il comando serve per fermare il programma e poi farlo ripartire dopo il numero di secondi specificati fra parentesi
     
     saves = input("Vuoi caricare una partita?: ")
+    print("\033c", end="")
     if saves == "si" or saves=="s" or saves=="SI" or saves=="S" or saves=="Si":
         z = open("salvataggi.txt", "r")
         stick = z.readlines()
@@ -199,6 +200,7 @@ def game_i():
                 print(f"\nBene! {player_name} Adesso puoi iniziare la tua avventura scegliendo il tuo primo pokémon.")
                 break
         next=input('→ ')
+        print("\033c", end="")
         # Scelta e creazione stats del pokémon--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         img_pokeball = climage.convert('sassari.png')       # converte l'immagine in formato ANSI e gli assegna una variabile
         print(img_pokeball)                                 # stampa l'immagine a schermo
@@ -277,13 +279,15 @@ def game_i():
                 break
             else:
                 print("\ninput invalido.\n")
-        next=input('→ ')    
+        next=input('→ ')
+        print("\033c", end="")
         info_type = input("Vuoi visualizzare i tipi su cui il tuo pokémon e superefficacie o a quali è debole?: ")
         if info_type == "SI" or info_type == "Si" or info_type == "si" or info_type == "S" or info_type == "s":
             pokemon_type_table="https://pwtng.altervista.org/wp-content/uploads/2017/08/tipi.png"
             webbrowser.open(pokemon_type_table)
         mixer.music.stop()      # ferma la musica
         time.sleep(2)
+        print("\033c", end="")
     # Inizio scontro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     tot_life = lp
     x = 0
@@ -300,11 +304,11 @@ def game_i():
                 print(f"Il tuo {pokemon} adesso è in forze!")
                 next=input('→ ')
             while fight!="si" or fight!="SI" or fight!="Si" or fight!="S" or fight!="s":
-                prob == random.randint(1, 10)
+                prob = random.randint(1, 10)
                 if prob > 6:
-                    drop, index_drop=loot_table.loot()
-                    playsound("item_sound.mp3")
+                    drop, index_drop=loot_table.loot_ita()
                     print(f"Hai aperto la pokèball ed hai trovato {drop}")
+                    playsound("item_sound.mp3")
                     invn[index_drop] = invn[index_drop] + 1
                     
                 elif prob <= 6:
@@ -405,7 +409,7 @@ def game_i():
                             enemy_pokemon_lvl = 100
                             elp = 1000
                             eatt = 1000
-                            edif = 1000         # Mewtwo è uno dei pokémon più forti e infatti non dovrebbe nemmeno essere questi
+                            edif = 1000         # Mewtwo è uno dei pokémon più forti e infatti non dovrebbe nemmeno essere tra questi
                             esatt = 1000
                             esdif = 1000
                             espe = 1000
@@ -427,13 +431,14 @@ def game_i():
                             enemy_pokemon_type = "Erba"
                         case _:
                             print("Errore nella lista")
-            mixer.music.load("battle_ost.wav")  # carica la musica del combattimento
+            mixer.music.load("battle_ost.mp3")  # carica la musica del combattimento
             mixer.music.play(-1)                # parte la musica
             mixer.music.set_volume(0.4)         # settaggio del volume
             time.sleep(2)
             
             stats(enemy_pokemon, enemy_pokemon_lvl, enemy_pokemon_type, elp, eatt, edif, esatt, esdif, espe)
             next=input('→ ')
+            print("\033c", end="")
             # Efficacia dei tipi-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             def efficacy_types(pokemon_type, enemy_pokemon_type):
                 global modifier
@@ -477,6 +482,7 @@ def game_i():
             efficacy_types(pokemon_type, enemy_pokemon_type)
             # Attacco------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             lp1 = lp
+            i = 0
             while not(lp1<=0 or elp<=0):
                 def combat_menu(lp1, elp):
                     print(f"{fg(222)}\n╔═{lp1:.0f} I tuoi HP                                       HP avversario {elp:.0f}═╗{attr(0)}")
@@ -498,7 +504,6 @@ def game_i():
                 if option=="fuga" or option=="3":
                         print(f"Scampato pericolo!")
                         time.sleep(2)
-                        next =input('→ ')
                         mixer.music.stop()
                         break
                 if spe >= espe :
@@ -545,6 +550,10 @@ def game_i():
                                 print(f"Hai fatto {dmg:.0f} danni.")
                             else:
                                 print("Il pokémon avversario ha schivato l'attacco!")
+                        else:
+                            print("Invalid command.")                    
+                    else:
+                        print("Invalid command.")
                     print(f"{fg(222)}════════════════════════════════════════════════{attr(0)}")
                     if elp<=0:
                         print(f"{enemy_pokemon} è esausto!")
@@ -670,6 +679,8 @@ def game_i():
         else:
             print("Input invalido.")
         x = 1
+        next = input('→ ')
+        print("\033c", end="")
         choice_combat=input("Vuoi proseguire nel percorso?: ")
         if (choice_combat == "Si" or choice_combat == "SI" or choice_combat == "si" or choice_combat == "S" or choice_combat == "s") and lp1 > 0: 
             healt_regen_choice = input("Prima di proseguire vuoi curare il tuo pokémon?: ")
@@ -679,3 +690,4 @@ def game_i():
                 playsound("Cura.mp3")
                 print("Il tuo pokémon è in piene forze!")
         save(player_name, character, pokemon, pokemon_exp, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe)
+        print("\033c", end="")

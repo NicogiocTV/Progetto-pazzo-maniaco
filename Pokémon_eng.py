@@ -141,6 +141,7 @@ def game_e():
     time.sleep(1)              # il comando serve per fermare il programma e poi farlo ripartire dopo il numero di secondi specificati fra parentesi
 
     saves = input("Want to load a game? ")
+    print("\033c", end="")
     if saves == "yes" or saves=="y" or saves=="YES" or saves=="Y" or saves=="Yes":
         z = open("salvataggi.txt", "r")
         stick = z.readlines()
@@ -190,6 +191,7 @@ def game_e():
                 print(f"\nNice! {player_name} Now you can start your adventure by choosing your first pokémon.")
                 break
         next=input('→ ')
+        print("\033c", end="")
         # Scelta e creazione stats del pokémon--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         img_pokeball = climage.convert('sassari.png')       # converte l'immagine in formato ANSI e gli assegna una variabile
         print(img_pokeball)                                 # stampa l'immagine a schermo
@@ -270,13 +272,15 @@ def game_e():
             else:
                 print("\ninput invalid.")
 
-        next=input('→ ')    
+        next=input('→ ')
+        print("\033c", end="") 
         info_type = input("Do you want to view the types your pokémon is super effective against or weak to?: ")
         if info_type == "YES" or info_type == "Yes" or info_type == "yes" or info_type == "Y" or info_type == "y":
             pokemon_type_table="https://pwtng.altervista.org/wp-content/uploads/2017/08/tipi.png"
             webbrowser.open(pokemon_type_table)
         mixer.music.stop()      # ferma la musica
         time.sleep(2)
+        print("\033c", end="")
     # Inizio scontro------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     tot_life = lp
     x = 0
@@ -293,11 +297,11 @@ def game_e():
                 print(f"We've restored your {pokemon} to full health!")
                 next=input('→ ')
             while fight!="yes" or fight!="YES" or fight!="Yes" or fight!="Y" or fight!="y":
-                prob == random.randint(1, 10)
+                prob = random.randint(1, 10)
                 if prob > 6:
                     drop, index_drop=loot_table.loot_eng()
-                    playsound("item_sound.mp3")
                     print(f"Oh! You found a {drop} in a pokéball!")
+                    playsound("item_sound.mp3")
                     invn[index_drop] = invn[index_drop] + 1
 
                 elif prob <= 6:
@@ -420,13 +424,14 @@ def game_e():
                             enemy_pokemon_type = "Grass"
                         case _:
                             print("List Error")
-            mixer.music.load("battle_ost.wav")  # carica la musica del combattimento
+            mixer.music.load("battle_ost.mp3")  # carica la musica del combattimento
             mixer.music.play(-1)                # parte la musica
             mixer.music.set_volume(0.4)         # settaggio del volume
             time.sleep(2)
 
             stats(enemy_pokemon, enemy_pokemon_lvl, enemy_pokemon_type, elp, eatt, edif, esatt, esdif, espe)
             next=input('→ ')
+            print("\033c", end="")
             # Efficacia dei tipi-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             def efficacy_types(pokemon_type, enemy_pokemon_type):
                 global modifier
@@ -470,6 +475,7 @@ def game_e():
             efficacy_types(pokemon_type, enemy_pokemon_type)
             # Attacco------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             lp1 = lp
+            i = 0
             while not(lp1<=0 or elp<=0):
                 def combat_menu(lp1, elp):
                     print(f"{fg(222)}\n╔═{lp1:.0f} Your HP's                                            Enemy HP {elp:.0f}═╗{attr(0)}")
@@ -491,7 +497,6 @@ def game_e():
                 if option=="run" or option=="3":
                         print(f"Got away safely!")
                         time.sleep(2)
-                        next =input('→ ')
                         mixer.music.stop()
                         break
                 if spe >= espe :
@@ -538,6 +543,10 @@ def game_e():
                                 print(f"You have done {dmg:.0f} damage.")
                             else:
                                 print("The enemy pokémon dodged the attack!")
+                        else:
+                            print("Invalid command.")                    
+                    else:
+                        print("Invalid command.")
                     print(f"{fg(222)}════════════════════════════════════════════════{attr(0)}")
                     if elp<=0:
                         print(f"The enemy {enemy_pokemon} fainted!")
@@ -663,6 +672,8 @@ def game_e():
         else:
             print("input invalid.")
         x = 1
+        next = input('→ ')
+        print("\033c", end="")
         choice_combat=input("Do you want to continue on the path? ")
         if (choice_combat == "Yes" or choice_combat == "YES" or choice_combat == "yes" or choice_combat == "Y" or choice_combat == "y") and lp1 > 0: 
             healt_regen_choice = input("Do you want to heal your pokémon first? ")
@@ -672,3 +683,4 @@ def game_e():
                 playsound("Cura.mp3")
                 print(f"We've restored your {pokemon} to full health!")
         save(player_name, character, pokemon, pokemon_exp, pokemon_lvl, pokemon_type, lp, att, dif, satt, sdif, spe)
+        print("\033c", end="")
