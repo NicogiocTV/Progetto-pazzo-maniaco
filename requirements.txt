@@ -1,0 +1,7 @@
+tqdm
+pyfiglet
+colored
+climage
+playsound==1.2.2
+pygame
+numpy
