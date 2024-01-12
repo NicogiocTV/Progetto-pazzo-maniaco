@@ -1,6 +1,6 @@
 def game_e():
     # Impostazione delle librerie e/o liste----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+    # per installare tutte le librerie in una volta digitare il comando: "pip install -r requirements.txt"
     #                                     # LIBRERIE UTILIZZATE:
     import climage                        # utilizzo la libreria Climage per stampare a schermo delle immagini (ATTENZIONE: le immagini devono essere scaricate, avere lo stesso nome dichiarato nel programma e trovarsi nella stessa cartella del programma (stessa cosa vale per i file audio usati con le altre librerie).
     import random                         # importo la libreria random per utilizzare i numeri randomici
